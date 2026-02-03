@@ -1,0 +1,130 @@
+<div class="container mt-4">
+  <h2 class="text-center text-danger mb-4">Data Binding in Angular</h2>
+
+  <div class="row">
+    <!-- Interpolation -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h3 class="card-title">1. Interpolation</h3>
+          <!-- 1. Simple variable -->
+          <p class="card-text">Name: {{ name }}</p>
+
+          <!-- 2. Expression -->
+          <p class="card-text">Next year age: {{ age + 1 }}</p>
+
+          <!-- 3. Method call -->
+          <p class="card-text">Uppercase Name: {{ getUpperName() }}</p>
+
+          <!-- 4. Ternary condition -->
+          <p class="card-text">
+            Status: {{ isLoggedIn ? "Logged In" : "Guest User" }}
+          </p>
+
+          <!-- 5. String length -->
+          <p class="card-text">Name Length: {{ name.length }}</p>
+
+          <!-- 6. Date -->
+          <p class="card-text">Today: {{ todayDate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Binding -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h3 class="card-title">2. Property Binding</h3>
+
+          <!-- 1. Simple variable -->
+          <img [src]="productImage" class="img-fluid mb-3" width="250px" />
+
+          <!-- 2. Expression -->
+          <input class="form-control mb-3" [value]="'Buy ' + productName" />
+
+          <!-- 3. Method call -->
+          <input class="form-control mb-3" [placeholder]="getPlaceholder()" />
+
+          <!-- 4. Boolean property -->
+          <button class="btn btn-primary mb-3" [disabled]="isOutOfStock">
+            Add to Cart
+          </button>
+
+          <!-- 5. Ternary condition -->
+          <p [hidden]="rating < 3">Highly Rated Product ⭐</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Binding -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h3 class="card-title">3. Event Binding</h3>
+
+          <!-- 1. Simple method call -->
+          <button class="btn btn-primary mb-3" (click)="onButtonClick()">
+            Click Me
+          </button>
+
+          <!-- 2. Passing custom value -->
+          <div
+            class="p-3 border rounded bg-light"
+            (mouseout)="onMouseOut()"
+            (mouseover)="onMouseOver()"
+          >
+            Hover mouse here
+          </div>
+          <p class="fw-bold">{{ hoverMessage }}</p>
+
+          <!-- 3. Using $event object -->
+          <input
+            class="form-control mb-3"
+            placeholder="Type something"
+            (input)="onInputChange($event)"
+          />
+          <p>{{ inputText }}</p>
+
+          <!-- 4. Keyboard event with $event -->
+          <input
+            class="form-control"
+            placeholder="Press any key"
+            (keyup)="onKeyPress($event.key)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Way Data Binding -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h3 class="card-title">4. Two Way Data Binding</h3>
+          <!-- 1. Without ngModel (Property + Event) -->
+          <h5>1.Two way data binding without ngModel</h5>
+          <select
+            class="form-select mb-2"
+            [value]="selectedValue"
+            (change)="onSelectChange($event)"
+          >
+            <option value="">-- Select Topic --</option>
+            <option value="Angular">Angular</option>
+            <option value="React">React</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Node js">Node js</option>
+          </select>
+          <p class="fw-bold">Selected Value: {{ selectedValue }}</p>
+
+          <!-- 2. With ngModel -->
+          <h5>2. With ngModel</h5>
+          <input
+            type="text"
+            class="form-control mb-2"
+            [(ngModel)]="inputValue"
+          />
+          <p class="fw-bold">You typed: {{ inputValue }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

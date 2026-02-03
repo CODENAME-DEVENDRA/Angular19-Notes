@@ -1,0 +1,91 @@
+<!-- 
+  Notes:
+  1. *ngFor requires CommonModule
+  2. @for does NOT require CommonModule
+  3. @for supports built-in variables: $first, $last, $even, $odd, $count, $index
+  4. Use semicolons in @for, never commas
+-->
+
+<div class="row text-center">
+  <div class="col-12 mb-4">
+    <h2>Structural Directive: *ngfor vs for</h2>
+  </div>
+</div>
+
+<div class="row text-center">
+  <!-- 1️⃣ Dropdown Example -->
+  <div class="col-4">
+    <select name="" id="" class="p-2">
+      <!-- Old *ngFor example -->
+      <!-- <option [value]="emp.empNumber" *ngFor="let emp of employees">
+        {{ emp.empName }} - {{ emp.empEmail }}
+      </option> -->
+
+      <!-- New @for syntax -->
+      @for ( emp of employees; track emp;) {
+      <option [value]="emp.empNumber">
+        {{ emp.empName }} - {{ emp.empEmail }}
+      </option>
+      }
+    </select>
+  </div>
+
+  <!-- 2️⃣ Table Example -->
+  <div class="col-4">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Emp Number</th>
+          <th>Emp Name</th>
+          <th>Emp Email</th>
+          <th>Emp Dept</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let emp of employees">
+          <td>{{ emp.empNumber }}</td>
+          <td>{{ emp.empName }}</td>
+          <td>{{ emp.empEmail }}</td>
+          <td>{{ emp.empDept }}</td>
+        </tr> -->
+        @for (emp of employees;track emp;) {
+        <tr>
+          <td>{{ emp.empNumber }}</td>
+          <td>{{ emp.empName }}</td>
+          <td>{{ emp.empEmail }}</td>
+          <td>{{ emp.empDept }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3️⃣ List Example with built-in variables -->
+  <div class="col-4">
+    <ul>
+      <!-- <li *ngFor="let company of companyList">
+        {{ company }}
+      </li> -->
+
+      <!-- @for ( company of companyList;track company;) {
+      <li>
+        {{ company }}
+      </li>
+      } -->
+
+      @for (company of companyList; track company; let f = $first; let l =
+      $last; let e = $even; let o = $odd; let c = $count; let i = $index) { @if
+      (f) {
+      <li class="list-group-item text-success">
+        {{ i + 1 }}. {{ company }} (First)
+      </li>
+      } @else if (l) {
+      <li class="list-group-item text-danger">
+        {{ i + 1 }}. {{ company }} (Last)
+      </li>
+      } @else {
+      <li class="list-group-item">{{ i + 1 }}. {{ company }}</li>
+      } }
+    </ul>
+  </div>
+</div>

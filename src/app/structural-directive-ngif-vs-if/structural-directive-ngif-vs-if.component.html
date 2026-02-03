@@ -1,0 +1,94 @@
+<div class="row text-center">
+  <div class="col-12 mb-4">
+    <h2>Structural Directive: *ngIf vs if</h2>
+  </div>
+</div>
+
+<div class="row text-center">
+  <!-- 1️⃣ Checkbox Toggle Example -->
+  <div class="col-3">
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <input
+        type="checkbox"
+        [checked]="isChecked"
+        (change)="toggleCheckbox()"
+        id="checkbox1"
+      />
+      <label for="checkbox1">Toggle Submit Button</label>
+    </div>
+
+    <!-- Old *ngIf example -->
+    <!-- <div *ngIf="isChecked">
+        <div>
+      <button class="btn btn-primary">Submit</button>
+       </div>
+    </div> -->
+
+    <!-- New @if syntax -->
+    @if (isChecked) {
+    <div>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+    }
+  </div>
+
+  <!-- 2️⃣ Show/Hide Input Example -->
+  <div class="col-3">
+    <!-- Old *ngIf example -->
+    <!-- <div *ngIf="isInputVisible">
+      <input type="text" />
+    </div> -->
+
+    <!-- New @if syntax -->
+    @if (isInputVisible) {
+    <input type="text" />
+    }
+
+    <div class="d-flex gap-3 justify-content-center mt-3">
+      <button class="btn btn-warning" (click)="showInput()">Show Input</button>
+      <button class="btn btn-danger" (click)="hideInput()">Hide Input</button>
+    </div>
+  </div>
+
+  <!-- 3️⃣ Comparing Two Input Values -->
+  <div class="col-3">
+    <input type="text" [(ngModel)]="inputValue1" />
+    <input type="text" [(ngModel)]="inputValue2" />
+
+    <!-- Old *ngIf example -->
+    <!-- <div *ngIf="inputValue1 !== inputValue2">
+      <p class="text-danger">Both values are not equal</p>
+    </div>
+    <div *ngIf="inputValue1 === inputValue2">
+      <p class="text-success">Both values are equal</p>
+    </div> -->
+
+    <!-- New @if syntax -->
+    @if (inputValue1 !== inputValue2) {
+    <p class="text-danger">Both values are not equal</p>
+    }@else if(inputValue1 === inputValue2) {
+    <p class="text-success">Both values are equal</p>
+    }
+  </div>
+
+  <div class="col-3">
+    <button class="btn btn-primary mb-3" (click)="toggleLogin()">
+      {{ isLoggedIn ? "Logout" : "Login" }}
+    </button>
+
+    <!-- Old *ngIf / else -->
+    <!-- <div *ngIf="isLoggedIn; else guestTemplate">
+      <p>Welcome, User! You are logged in.</p>
+    </div>
+    <ng-template #guestTemplate>
+      <p>Welcome, Guest! Please log in.</p>
+    </ng-template> -->
+
+    <!-- New @if / @else -->
+    @if (isLoggedIn) {
+    <p class="text-success">Welcome, User! You are logged in.</p>
+    } @else {
+    <p class="text-warning">Welcome, Guest! Please log in.</p>
+    }
+  </div>
+</div>
