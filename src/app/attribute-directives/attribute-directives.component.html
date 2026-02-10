@@ -1,0 +1,91 @@
+<div>
+  <h2 class="text-center mb-4">Attribute Directives</h2>
+
+  <div class="row text-center">
+    <h3>NgClass</h3>
+    <div class="col-md-4 mb-4">
+      <!-- below both work same but second one is more concise and recommended way to use class binding -->
+      <!-- <h2 [ngClass]="textColor">This is the first example of ngClass</h2> -->
+      <h2 [class]="textColor">This is the first example of ngClass</h2>
+
+      <button
+        class="btn btn-success me-2"
+        (click)="changeColor('text-success')"
+      >
+        Change to Green
+      </button>
+      <button class="btn btn-danger me-2" (click)="changeColor('text-danger')">
+        Change to Red
+      </button>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <h2 [ngClass]="isColorChange ? 'text-danger' : 'text-success'">
+        This is the second example of ngClass
+      </h2>
+
+      <div class="d-flex gap-2 justify-content-center">
+        <input
+          [ngClass]="
+            isColorChange ? 'form-check-input' : 'form-check-input text-muted'
+          "
+          type="checkbox"
+          [(ngModel)]="isColorChange"
+          id="colorChange"
+        />
+        <label for="colorChange">Toggle Color</label>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <h2 [ngClass]="textColor">This is the third example of ngClass</h2>
+
+      <select name="color" id="colorSelect" [(ngModel)]="textColor">
+        <option value="text-primary">Primary</option>
+        <option value="text-secondary">Secondary</option>
+        <option value="text-success">Success</option>
+        <option value="text-danger">Danger</option>
+        <option value="text-warning">Warning</option>
+        <option value="text-info">Info</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <h3>NgStyle</h3>
+    <div class="col-md-4 mb-4">
+      <!-- below both work same but second one is more concise and recommended way to use style binding -->
+      <!-- <h2 [ngStyle]="{ color: styleColor }">
+        This is the first example of ngStyle
+      </h2> -->
+      <h2 [style]="{ color: styleColor }">
+        This is the first example of ngStyle
+      </h2>
+      <button class="btn btn-success me-2" (click)="updateColor('green')">
+        Change to Green
+      </button>
+      <button class="btn btn-danger me-2" (click)="updateColor('red')">
+        Change to Red
+      </button>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <h2 [ngStyle]="{ color: isStyleChange ? 'red' : 'green' }">
+        This is the second example of ngStyle
+      </h2>
+      <div class="d-flex gap-2 justify-content-center">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="isStyleChange"
+          id="styleChange"
+        />
+        <label for="styleChange">Toggle Color</label>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <h2 [ngStyle]="customClass">This is the third example of ngStyle</h2>
+    </div>
+  </div>
+</div>

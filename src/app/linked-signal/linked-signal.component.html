@@ -1,0 +1,6 @@
+<div>
+  <p>Quantity: {{ quantity() }}</p>
+  <input type="number" [(ngModel)]="quantity" />
+  <button (click)="calculate()">Calculate Total</button>
+  <p>Total Amount: {{ totalAmount() }}</p>
+</div>
